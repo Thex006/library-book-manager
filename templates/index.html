@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="stats">
+  <div class="card"><b>{{ books|length }}</b><br>Books</div>
+  <div class="card"><b>{{ books|length - borrowed }}</b><br>Available</div>
+  <div class="card"><b>{{ borrowed }}</b><br>Borrowed</div>
+</div>
+
+<input id="search" placeholder="Search by title or author...">
+<table>
+  <tr><th>Title</th><th>Author</th><th>Genre</th><th>Year</th><th>Status</th><th></th></tr>
+  {% for b in books %}
+  <tr>
+    <td>{{ b.title }}</td><td>{{ b.author }}</td><td>{{ b.genre }}</td><td>{{ b.year }}</td>
+    <td>
+      <form method="post" action="/toggle/{{ b.id }}">
+        {% if b.available %}
+          <button class="status ok">Available</button>
+        {% else %}
+          <button class="status out">Borrowed</button>
+        {% endif %}
+      </form>
+    </td>
+    <td class="actions">
+      <a href="/edit/{{ b.id }}">Edit</a>
+      <form method="post" action="/delete/{{ b.id }}" class="delete-form">
+        <button class="danger">Delete</button>
+      </form>
+    </td>
+  </tr>
+  {% else %}
+  <tr><td colspan="6">No books yet. Click "+ Add book".</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}
