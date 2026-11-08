@@ -1,9 +1,7 @@
 # Library Book Manager
 
-## Group Members
-- Thierry Chizaram Onuoha
-- *(Member 2 – name, Neptun code)*
-- *(Member 3 – name, Neptun code)*
+## Author
+- Thierry Chizaram Onuoha (individual project)
 
 ## Project Description
 The Library Book Manager is a web application that helps a small library (school, club or home library) keep track of its books.
