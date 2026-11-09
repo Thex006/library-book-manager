@@ -4,7 +4,7 @@ A small web app (Python + Flask + SQLite) to manage the books of a library.
 It does CRUD: Create, Read, Update, Delete books.
 
 Run:   pip install flask
-       python app.py
+       python main.py
 Open:  http://127.0.0.1:5000
 """
 import sqlite3
