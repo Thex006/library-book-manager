@@ -1,3 +1,4 @@
+import os
 import sqlite3
 from flask import Flask, render_template, request, redirect
 
@@ -11,8 +12,10 @@ def get_db():
     return con
 
 
-# create the table from database.sql
+# create the database from database.sql (only the first time)
 def create_table():
+    if os.path.exists("library.db"):
+        return
     con = get_db()
     con.executescript(open("database.sql").read())
     con.close()
