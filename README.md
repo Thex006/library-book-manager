@@ -1,64 +1,51 @@
-# 📚 Library Book Manager
+# Library Book Manager
 
-**Author:** Thierry Chizaram Onuoha
-**Course:** Technology and Methodology of System Development (BAI0168)
+Made by Thierry Chizaram Onuoha for the Technology and Methodology of System Development course (BAI0168).
 
-A simple web application for managing the books of a small library.
-It implements **CRUD** (Create, Read, Update, Delete) on books and has a simple web interface.
+This is a small web app for managing the books in a library. You can add books, see them in a list, edit them, mark them as borrowed or returned, and delete them. So it covers all the CRUD operations (Create, Read, Update, Delete).
 
----
+## The code
 
-## 👉 Where is the code?
+- [main.py](main.py) - the main Python code (database and all CRUD functions)
+- [templates](templates) - the HTML pages
+- [static/style.css](static/style.css) - the design
+- [static/script.js](static/script.js) - JavaScript for the search box and the delete confirmation
 
-| File | What it contains |
-|---|---|
-| **[main.py](main.py)** | **The main Python code**: the database and all CRUD operations |
-| [templates/index.html](templates/index.html) | Home page: list of all books |
-| [templates/form.html](templates/form.html) | Form for adding and editing a book |
-| [templates/base.html](templates/base.html) | Shared layout (header) used by every page |
-| [static/style.css](static/style.css) | Design (colours, table, buttons) |
-| [static/script.js](static/script.js) | JavaScript: live search and delete confirmation |
-| [requirements.txt](requirements.txt) | Python packages needed (Flask) |
+CRUD in main.py:
 
-### CRUD operations in `main.py`
-| Operation | Function | What it does |
-|---|---|---|
-| **Create** | `add()` | Adds a new book (`INSERT`) |
-| **Read** | `index()` | Shows all books (`SELECT`) |
-| **Update** | `edit()` and `toggle()` | Edits a book / marks it borrowed or available (`UPDATE`) |
-| **Delete** | `delete()` | Removes a book (`DELETE`) |
+- Create - add()
+- Read - index()
+- Update - edit() and toggle()
+- Delete - delete()
 
-## Technologies
-- **Python + Flask**: application logic
-- **SQLite**: database (one file, `library.db`, created automatically)
-- **HTML, CSS, JavaScript**: user interface
-- **Git + GitHub**: version control
+## Technologies used
 
----
+- Python and Flask
+- SQLite database
+- HTML, CSS and JavaScript
+- Git and GitHub
 
-# User Documentation
+## How to run it
 
-## Installation and start
-1. Install **Python 3** from https://python.org.
-2. Download this project: click the green **Code** button → **Download ZIP**, then unzip it.
-3. Open a terminal in the folder that contains `main.py`.
-4. Install Flask: `pip install flask`
-5. Start the app: `python main.py`
-6. Open **http://127.0.0.1:5000** in your browser.
+1. Install Python 3
+2. Download this project (Code -> Download ZIP) and unzip it
+3. Open a terminal in the folder where main.py is
+4. Run `pip install flask`
+5. Run `python main.py`
+6. Open http://127.0.0.1:5000 in your browser
+
+The database file (library.db) is created automatically the first time you run it.
 
 ## How to use it
 
-**See all books (Read):** The home page shows the total number of books, how many are available and how many are borrowed, followed by a table of all books. Type in the search box to filter the table.
+- See the books: the home page shows all books in a table, and how many are available or borrowed. You can type in the search box to find a book.
+- Add a book: click "+ Add book", fill in the title, author, genre and year, and click Save.
+- Edit a book: click Edit next to a book, change what you want, and click Save.
+- Borrow or return a book: click the green Available button and it changes to Borrowed. Click it again when the book is returned.
+- Delete a book: click Delete next to the book and confirm.
 
-**Add a book (Create):** Click **+ Add book**, fill in the title, author, genre and year, then click **Save**.
+## Problems
 
-**Edit a book (Update):** Click **Edit** next to a book, change the details, then click **Save**.
-
-**Borrow / return a book (Update):** Click the green **Available** button to mark the book as borrowed. It turns red (**Borrowed**). Click it again when the book is returned.
-
-**Delete a book (Delete):** Click **Delete** next to a book and confirm in the pop-up.
-
-## Troubleshooting
-- **`No module named 'flask'`**: run `pip install flask`.
-- **`can't open file ... main.py`**: the terminal is in the wrong folder. Use `cd` to go to the folder that contains `main.py`.
-- **To start with an empty library:** stop the app and delete `library.db`.
+- If you get "No module named flask", run `pip install flask`.
+- If you get "can't open file main.py", you are in the wrong folder in the terminal.
+- To start with an empty library, delete the library.db file.

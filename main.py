@@ -1,31 +1,19 @@
-"""
-Library Book Manager
-A small web app (Python + Flask + SQLite) to manage the books of a library.
-It does CRUD: Create, Read, Update, Delete books.
-
-Run:   pip install flask
-       python main.py
-Open:  http://127.0.0.1:5000
-"""
 import sqlite3
 from flask import Flask, render_template, request, redirect, flash
 
 app = Flask(__name__)
-app.secret_key = "library-secret"     # needed for flash messages
+app.secret_key = "library-secret"
 DB = "library.db"
 GENRES = ["Fiction", "Science", "History", "Technology", "Children", "Other"]
 
 
-# ---------- DATABASE ----------
 def db():
-    """Open a connection to the database file."""
     con = sqlite3.connect(DB)
-    con.row_factory = sqlite3.Row     # lets us write book["title"]
+    con.row_factory = sqlite3.Row
     return con
 
 
 def create_table():
-    """Create the books table the first time the app runs."""
     con = db()
     con.execute("""
         CREATE TABLE IF NOT EXISTS books (
@@ -34,14 +22,13 @@ def create_table():
             author    TEXT NOT NULL,
             genre     TEXT,
             year      INTEGER,
-            available INTEGER DEFAULT 1      -- 1 = on the shelf, 0 = borrowed
+            available INTEGER DEFAULT 1
         )
     """)
     con.commit()
     con.close()
 
 
-# ---------- READ: list all books ----------
 @app.route("/")
 def index():
     con = db()
@@ -51,7 +38,6 @@ def index():
     return render_template("index.html", books=books, borrowed=borrowed)
 
 
-# ---------- CREATE: add a new book ----------
 @app.route("/add", methods=["GET", "POST"])
 def add():
     if request.method == "POST":
@@ -66,7 +52,6 @@ def add():
     return render_template("form.html", book=None, genres=GENRES)
 
 
-# ---------- UPDATE: edit a book ----------
 @app.route("/edit/<int:book_id>", methods=["GET", "POST"])
 def edit(book_id):
     con = db()
@@ -83,7 +68,6 @@ def edit(book_id):
     return render_template("form.html", book=book, genres=GENRES)
 
 
-# ---------- UPDATE: borrow / return a book ----------
 @app.route("/toggle/<int:book_id>", methods=["POST"])
 def toggle(book_id):
     con = db()
@@ -93,7 +77,6 @@ def toggle(book_id):
     return redirect("/")
 
 
-# ---------- DELETE: remove a book ----------
 @app.route("/delete/<int:book_id>", methods=["POST"])
 def delete(book_id):
     con = db()

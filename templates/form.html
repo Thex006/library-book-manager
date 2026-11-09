@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% block content %}
-<!-- One form for both Add and Edit: if "book" exists we are editing -->
 <h2>{{ "Edit book" if book else "Add a new book" }}</h2>
 <form method="post" class="card">
   <label>Title <input name="title" value="{{ book.title if book else '' }}" required></label>
