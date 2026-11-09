@@ -1,92 +1,70 @@
 import sqlite3
-from flask import Flask, render_template, request, redirect, flash
+from flask import Flask, render_template, request, redirect
 
 app = Flask(__name__)
-app.secret_key = "library-secret"
-DB = "library.db"
-GENRES = ["Fiction", "Science", "History", "Technology", "Children", "Other"]
 
 
-def db():
-    con = sqlite3.connect(DB)
+# connect to the database
+def get_db():
+    con = sqlite3.connect("library.db")
     con.row_factory = sqlite3.Row
     return con
 
 
+# create the table from database.sql
 def create_table():
-    con = db()
-    con.execute("""
-        CREATE TABLE IF NOT EXISTS books (
-            id        INTEGER PRIMARY KEY AUTOINCREMENT,
-            title     TEXT NOT NULL,
-            author    TEXT NOT NULL,
-            genre     TEXT,
-            year      INTEGER,
-            available INTEGER DEFAULT 1
-        )
-    """)
-    con.commit()
+    con = get_db()
+    con.executescript(open("database.sql").read())
     con.close()
 
 
+# READ - show all books
 @app.route("/")
 def index():
-    con = db()
-    books = con.execute("SELECT * FROM books ORDER BY title").fetchall()
+    con = get_db()
+    books = con.execute("SELECT * FROM books").fetchall()
     con.close()
-    borrowed = sum(1 for b in books if b["available"] == 0)
-    return render_template("index.html", books=books, borrowed=borrowed)
+    return render_template("index.html", books=books)
 
 
+# CREATE - add a new book
 @app.route("/add", methods=["GET", "POST"])
 def add():
     if request.method == "POST":
-        f = request.form
-        con = db()
-        con.execute("INSERT INTO books (title, author, genre, year) VALUES (?, ?, ?, ?)",
-                    (f["title"], f["author"], f["genre"], f["year"]))
+        con = get_db()
+        con.execute("INSERT INTO books (title, author, year) VALUES (?, ?, ?)",
+                    (request.form["title"], request.form["author"], request.form["year"]))
         con.commit()
         con.close()
-        flash("Book added.")
         return redirect("/")
-    return render_template("form.html", book=None, genres=GENRES)
+    return render_template("add.html")
 
 
-@app.route("/edit/<int:book_id>", methods=["GET", "POST"])
-def edit(book_id):
-    con = db()
+# UPDATE - edit a book
+@app.route("/edit/<int:id>", methods=["GET", "POST"])
+def edit(id):
+    con = get_db()
     if request.method == "POST":
-        f = request.form
-        con.execute("UPDATE books SET title=?, author=?, genre=?, year=? WHERE id=?",
-                    (f["title"], f["author"], f["genre"], f["year"], book_id))
+        con.execute("UPDATE books SET title = ?, author = ?, year = ? WHERE id = ?",
+                    (request.form["title"], request.form["author"], request.form["year"], id))
         con.commit()
         con.close()
-        flash("Book updated.")
         return redirect("/")
-    book = con.execute("SELECT * FROM books WHERE id = ?", (book_id,)).fetchone()
+    book = con.execute("SELECT * FROM books WHERE id = ?", (id,)).fetchone()
     con.close()
-    return render_template("form.html", book=book, genres=GENRES)
+    return render_template("edit.html", book=book)
 
 
-@app.route("/toggle/<int:book_id>", methods=["POST"])
-def toggle(book_id):
-    con = db()
-    con.execute("UPDATE books SET available = 1 - available WHERE id = ?", (book_id,))
+# DELETE - remove a book
+@app.route("/delete/<int:id>")
+def delete(id):
+    con = get_db()
+    con.execute("DELETE FROM books WHERE id = ?", (id,))
     con.commit()
     con.close()
     return redirect("/")
 
 
-@app.route("/delete/<int:book_id>", methods=["POST"])
-def delete(book_id):
-    con = db()
-    con.execute("DELETE FROM books WHERE id = ?", (book_id,))
-    con.commit()
-    con.close()
-    flash("Book deleted.")
-    return redirect("/")
-
-
-if __name__ == "__main__":
-    create_table()
-    app.run(debug=True)
+# start the website
+create_table()
+app.run(debug=True)

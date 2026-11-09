@@ -2,27 +2,30 @@
 
 Made by Thierry Chizaram Onuoha for the Technology and Methodology of System Development course (BAI0168).
 
-This is a small web app for managing the books in a library. You can add books, see them in a list, edit them, mark them as borrowed or returned, and delete them. So it covers all the CRUD operations (Create, Read, Update, Delete).
+This is a simple website for managing the books in a library. You can add a book, see all books, edit a book and delete a book. These are the CRUD operations (Create, Read, Update, Delete).
 
 ## The code
 
-- [main.py](main.py) - the main Python code (database and all CRUD functions)
-- [templates](templates) - the HTML pages
-- [static/style.css](static/style.css) - the design
-- [static/script.js](static/script.js) - JavaScript for the search box and the delete confirmation
+- [templates/index.html](templates/index.html) - home page with the list of books
+- [templates/add.html](templates/add.html) - page to add a book
+- [templates/edit.html](templates/edit.html) - page to edit a book
+- [static/style.css](static/style.css) - the design of the website
+- [database.sql](database.sql) - the SQL code for the database table
+- [main.py](main.py) - connects the website to the database
 
-CRUD in main.py:
+CRUD:
 
-- Create - add()
-- Read - index()
-- Update - edit() and toggle()
-- Delete - delete()
+- Create - add.html and add() in main.py (INSERT)
+- Read - index.html and index() in main.py (SELECT)
+- Update - edit.html and edit() in main.py (UPDATE)
+- Delete - the Delete link and delete() in main.py (DELETE)
 
 ## Technologies used
 
-- Python and Flask
-- SQLite database
-- HTML, CSS and JavaScript
+- HTML
+- CSS
+- SQL (SQLite database)
+- Python and Flask (to connect the pages to the database)
 - Git and GitHub
 
 ## How to run it
@@ -38,11 +41,10 @@ The database file (library.db) is created automatically the first time you run i
 
 ## How to use it
 
-- See the books: the home page shows all books in a table, and how many are available or borrowed. You can type in the search box to find a book.
-- Add a book: click "+ Add book", fill in the title, author, genre and year, and click Save.
-- Edit a book: click Edit next to a book, change what you want, and click Save.
-- Borrow or return a book: click the green Available button and it changes to Borrowed. Click it again when the book is returned.
-- Delete a book: click Delete next to the book and confirm.
+- See the books: the home page shows all books in a table.
+- Add a book: click "Add book", fill in the title, author and year, and click Save.
+- Edit a book: click Edit next to a book, change what you want, and click Save changes.
+- Delete a book: click Delete next to the book.
 
 ## Problems
 
