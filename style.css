@@ -45,7 +45,7 @@ nav a.active {
 
 /* page content */
 main {
-    max-width: 900px;
+    max-width: 1000px;
     margin: 30px auto;
     padding: 0 20px;
 }
@@ -149,6 +149,8 @@ tr:hover td {
 
 /* edit link */
 td a {
+    display: inline-block;
+    white-space: nowrap;
     text-decoration: none;
     padding: 5px 12px;
     border-radius: 6px;
@@ -162,6 +164,25 @@ td a {
 td a.delete {
     background-color: #fde2e2;
     color: #c0392b;
+}
+
+/* book status labels */
+.available,
+.onloan {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.available {
+    background-color: #dff5e3;
+    color: #1e8449;
+}
+
+.onloan {
+    background-color: #fff1d6;
+    color: #b9770e;
 }
 
 /* small screens (phones) */

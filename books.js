@@ -16,10 +16,12 @@ function fillDropdowns() {
 }
 
 /* READ: list all books (JOIN gets the author and category names) */
+/* a book is "On loan" if it has a row in the loans table */
 function showList() {
     const rows = select(`
         SELECT books.id, books.title, books.year,
-               authors.name AS author, categories.name AS category
+               authors.name AS author, categories.name AS category,
+               (SELECT COUNT(*) FROM loans WHERE loans.book_id = books.id) AS loaned
         FROM books
         LEFT JOIN authors ON books.author_id = authors.id
         LEFT JOIN categories ON books.category_id = categories.id`);
@@ -30,6 +32,7 @@ function showList() {
             <td>${b.author || "-"}</td>
             <td>${b.category || "-"}</td>
             <td>${b.year}</td>
+            <td>${b.loaned > 0 ? '<span class="onloan">On loan</span>' : '<span class="available">Available</span>'}</td>
             <td>
                 <a href="#" onclick="editItem(${b.id})">Edit</a>
                 <a href="#" class="delete" onclick="deleteItem(${b.id})">Delete</a>
