@@ -7,55 +7,60 @@
 </head>
 <body>
 
-    <!-- header -->
-    <h1>Library Management System</h1>
+    <!-- header with the menu -->
+    <header>
+        <h1>📚 Library Management System</h1>
+        <nav>
+            <a href="index.html">Books</a>
+            <a href="authors.html">Authors</a>
+            <a href="categories.html">Categories</a>
+            <a href="readers.html">Readers</a>
+            <a href="loans.html" class="active">Loans</a>
+        </nav>
+    </header>
 
-    <!-- menu -->
-    <nav>
-        <a href="index.html">Books</a>
-        <a href="authors.html">Authors</a>
-        <a href="categories.html">Categories</a>
-        <a href="readers.html">Readers</a>
-        <a href="loans.html">Loans</a>
-    </nav>
+    <!-- page content -->
+    <main>
 
-    <h2>Loans</h2>
+        <h2>Loans</h2>
 
-    <!-- CREATE / UPDATE: form -->
-    <form id="form">
-        <h3 id="formTitle">Add loan</h3>
+        <!-- CREATE / UPDATE: form -->
+        <form id="form">
+            <h3 id="formTitle">Add loan</h3>
 
-        <label>Book</label>
-        <select id="book"></select>
+            <label>Book</label>
+            <select id="book"></select>
 
-        <label>Reader</label>
-        <select id="reader"></select>
+            <label>Reader</label>
+            <select id="reader"></select>
 
-        <label>Loan date</label>
-        <input type="date" id="loanDate" required>
+            <label>Loan date</label>
+            <input type="date" id="loanDate" required>
 
-        <label>Return date</label>
-        <input type="date" id="returnDate">
+            <label>Return date</label>
+            <input type="date" id="returnDate">
 
-        <button type="submit">Save</button>
-    </form>
+            <button type="submit">Save</button>
+        </form>
 
-    <!-- READ: table -->
-    <table>
-        <thead>
-            <tr>
-                <th>Book</th>
-                <th>Reader</th>
-                <th>Loan date</th>
-                <th>Return date</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody id="list"></tbody>
-    </table>
+        <!-- READ: table -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Book</th>
+                    <th>Reader</th>
+                    <th>Loan date</th>
+                    <th>Return date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="list"></tbody>
+        </table>
 
-    <!-- reset the example data -->
-    <button class="reset" onclick="resetDatabase()">Reset database</button>
+        <!-- reset the example data -->
+        <button class="reset" onclick="resetDatabase()">Reset database</button>
+
+    </main>
 
     <!-- SQL library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
