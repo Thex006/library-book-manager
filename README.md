@@ -6,6 +6,8 @@ This is a simple website for managing a library. You can manage books, authors, 
 
 Live website: https://thex006.github.io/library-book-manager/
 
+User documentation: [User_Documentation.pdf](User_Documentation.pdf)
+
 ## The code
 
 Pages (HTML):
