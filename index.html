@@ -2,23 +2,37 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Library Book Manager</title>
+    <title>Library - Books</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <!-- header -->
-    <h1>Library Book Manager</h1>
+    <h1>Library Management System</h1>
 
-    <!-- CREATE / UPDATE: form to add or edit a book -->
-    <form id="bookForm">
-        <h2 id="formTitle">Add a new book</h2>
+    <!-- menu -->
+    <nav>
+        <a href="index.html">Books</a>
+        <a href="authors.html">Authors</a>
+        <a href="categories.html">Categories</a>
+        <a href="readers.html">Readers</a>
+        <a href="loans.html">Loans</a>
+    </nav>
+
+    <h2>Books</h2>
+
+    <!-- CREATE / UPDATE: form -->
+    <form id="form">
+        <h3 id="formTitle">Add book</h3>
 
         <label>Title</label>
         <input type="text" id="title" required>
 
         <label>Author</label>
-        <input type="text" id="author" required>
+        <select id="author"></select>
+
+        <label>Category</label>
+        <select id="category"></select>
 
         <label>Year</label>
         <input type="number" id="year" required>
@@ -26,26 +40,29 @@
         <button type="submit">Save</button>
     </form>
 
-    <!-- READ: table with all books -->
+    <!-- READ: table -->
     <table>
         <thead>
             <tr>
                 <th>Title</th>
                 <th>Author</th>
+                <th>Category</th>
                 <th>Year</th>
                 <th>Actions</th>
             </tr>
         </thead>
-        <tbody id="bookList"></tbody>
+        <tbody id="list"></tbody>
     </table>
 
-    <!-- button to reset the database -->
-    <button id="resetButton" class="reset">Reset database</button>
+    <!-- reset the example data -->
+    <button class="reset" onclick="resetDatabase()">Reset database</button>
 
-    <!-- SQL library (SQLite in the browser) -->
+    <!-- SQL library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
-    <!-- my code -->
-    <script src="app.js"></script>
+    <!-- shared database code -->
+    <script src="db.js"></script>
+    <!-- code for this page -->
+    <script src="books.js"></script>
 
 </body>
 </html>

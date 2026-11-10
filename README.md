@@ -1,51 +1,73 @@
-# Library Book Manager
+# Library Management System
 
 Made by Thierry Chizaram Onuoha for the Technology and Methodology of System Development course (BAI0168).
 
-This is a simple website for managing the books in a library. You can add a book, see all books, edit a book and delete a book. These are the CRUD operations (Create, Read, Update, Delete).
+This is a simple website for managing a library. You can manage books, authors, categories, readers and loans. For each one you can add, list, edit and delete, which are the CRUD operations (Create, Read, Update, Delete).
 
 Live website: https://thex006.github.io/library-book-manager/
 
 ## The code
 
-- [index.html](index.html) - the page: the form and the table of books
-- [style.css](style.css) - the design of the website
-- [database.sql](database.sql) - the SQL code for the database (the table and some example books)
-- [app.js](app.js) - runs the SQL when you click the buttons
+Pages (HTML):
 
-CRUD:
+- [index.html](index.html) - Books page (home page)
+- [authors.html](authors.html) - Authors page
+- [categories.html](categories.html) - Categories page
+- [readers.html](readers.html) - Readers page
+- [loans.html](loans.html) - Loans page
 
-- Create - INSERT INTO books
-- Read - SELECT * FROM books
-- Update - UPDATE books SET ... WHERE id = ?
-- Delete - DELETE FROM books WHERE id = ?
+Design (CSS):
+
+- [style.css](style.css) - the design of all pages
+
+Database (SQL):
+
+- [database.sql](database.sql) - creates the 5 tables and adds example data
+
+JavaScript (runs the SQL):
+
+- [db.js](db.js) - shared code: loads and saves the database
+- [books.js](books.js), [authors.js](authors.js), [categories.js](categories.js), [readers.js](readers.js), [loans.js](loans.js) - the CRUD code for each page
+
+## Database tables
+
+- authors - id, name, country
+- categories - id, name
+- books - id, title, author_id, category_id, year
+- readers - id, name, email, phone
+- loans - id, book_id, reader_id, loan_date, return_date
+
+A book is linked to an author and a category. A loan is linked to a book and a reader.
+
+## CRUD
+
+Every page does the same four things:
+
+- Create - INSERT INTO ...
+- Read - SELECT ... FROM ...
+- Update - UPDATE ... SET ... WHERE id = ?
+- Delete - DELETE FROM ... WHERE id = ?
 
 ## Technologies used
 
 - HTML
 - CSS
-- SQL (SQLite)
-- a small JavaScript file to run the SQL
+- SQL (SQLite, running in the browser with sql.js)
+- JavaScript (small files that run the SQL)
 - Git and GitHub (GitHub Pages hosts the website)
-
-## The database
-
-The database is SQLite. It runs inside the browser using a library called sql.js.
-
-- The first time you open the site, the database is created from [database.sql](database.sql), which has the table and 4 example books.
-- After that, the database is saved in your browser, so your changes stay when you reload the page.
-- The "Reset database" button deletes your changes and starts again from database.sql.
 
 ## How to run it
 
-Just open the live website: https://thex006.github.io/library-book-manager/
+Open the live website: https://thex006.github.io/library-book-manager/
 
-No installing is needed. GitHub Pages hosts it for free, so it is not on localhost.
+No installing is needed.
+
+The first time, the database is created from database.sql. After that it is saved in your browser, so changes stay when you reload. The "Reset database" button goes back to the example data.
 
 ## How to use it
 
-- See the books: all books are shown in the table.
-- Add a book: fill in the title, author and year at the top, and click Save.
-- Edit a book: click Edit next to a book. Its data goes into the form. Change it and click Save.
-- Delete a book: click Delete next to the book.
-- Reset: click "Reset database" to go back to the example books.
+- Use the menu at the top to go to Books, Authors, Categories, Readers or Loans.
+- Add: fill in the form and click Save.
+- List: everything is shown in the table under the form.
+- Edit: click Edit next to a row. The data goes into the form. Change it and click Save.
+- Delete: click Delete next to a row.
