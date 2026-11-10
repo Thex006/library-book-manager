@@ -16,12 +16,16 @@ function fillDropdowns() {
 }
 
 /* READ: list all books (JOIN gets the author and category names) */
-/* a book is "On loan" if it has a row in the loans table */
+/* a book is "On loan" if today is between the loan date and the return date */
 function showList() {
     const rows = select(`
         SELECT books.id, books.title, books.year,
                authors.name AS author, categories.name AS category,
-               (SELECT COUNT(*) FROM loans WHERE loans.book_id = books.id) AS loaned
+               (SELECT COUNT(*) FROM loans
+                WHERE loans.book_id = books.id
+                AND loans.loan_date <= date('now')
+                AND (loans.return_date = '' OR loans.return_date IS NULL
+                     OR loans.return_date >= date('now'))) AS loaned
         FROM books
         LEFT JOIN authors ON books.author_id = authors.id
         LEFT JOIN categories ON books.category_id = categories.id`);

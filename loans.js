@@ -16,10 +16,12 @@ function fillDropdowns() {
 }
 
 /* READ: list all loans (JOIN gets the book title and reader name) */
+/* a loan is "Returned" when the return date is before today */
 function showList() {
     const rows = select(`
         SELECT loans.id, loans.loan_date, loans.return_date,
-               books.title AS book, readers.name AS reader
+               books.title AS book, readers.name AS reader,
+               (loans.return_date <> '' AND loans.return_date < date('now')) AS returned
         FROM loans
         LEFT JOIN books ON loans.book_id = books.id
         LEFT JOIN readers ON loans.reader_id = readers.id`);
@@ -30,6 +32,7 @@ function showList() {
             <td>${l.reader || "-"}</td>
             <td>${l.loan_date}</td>
             <td>${l.return_date || "-"}</td>
+            <td>${l.returned ? '<span class="available">Returned</span>' : '<span class="onloan">Active</span>'}</td>
             <td>
                 <a href="#" onclick="editItem(${l.id})">Edit</a>
                 <a href="#" class="delete" onclick="deleteItem(${l.id})">Delete</a>
