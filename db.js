@@ -40,9 +40,3 @@ function change(sql, params = []) {
     db.run(sql, params);
     save();
 }
-
-/* reset: go back to the example data */
-function resetDatabase() {
-    localStorage.removeItem("libraryDB");
-    location.reload();
-}

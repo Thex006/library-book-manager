@@ -64,7 +64,7 @@ Open the live website: https://thex006.github.io/library-book-manager/
 
 No installing is needed.
 
-The first time, the database is created from database.sql. After that it is saved in your browser, so changes stay when you reload. The "Reset database" button goes back to the example data.
+The first time, the database is created from database.sql. After that it is saved in your browser, so changes stay when you reload.
 
 ## How to use it
 
