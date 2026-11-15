@@ -10,13 +10,15 @@ User documentation: [User_Documentation.pdf](User_Documentation.pdf)
 
 ## The code
 
-Pages (HTML):
+Pages (HTML) - in the html folder:
 
-- [index.html](index.html) - Books page (home page)
-- [authors.html](authors.html) - Authors page
-- [categories.html](categories.html) - Categories page
-- [readers.html](readers.html) - Readers page
-- [loans.html](loans.html) - Loans page
+- [books.html](html/books.html) - Books page (home page)
+- [authors.html](html/authors.html) - Authors page
+- [categories.html](html/categories.html) - Categories page
+- [readers.html](html/readers.html) - Readers page
+- [loans.html](html/loans.html) - Loans page
+
+The index.html file at the top only opens the Books page, because GitHub Pages always starts from index.html.
 
 Design (CSS) - in the css folder:
 

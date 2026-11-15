@@ -2,8 +2,8 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Library - Categories</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Library - Loans</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
@@ -11,11 +11,11 @@
     <header>
         <h1>📚 Library Management System</h1>
         <nav>
-            <a href="index.html">Books</a>
+            <a href="books.html">Books</a>
             <a href="authors.html">Authors</a>
-            <a href="categories.html" class="active">Categories</a>
+            <a href="categories.html">Categories</a>
             <a href="readers.html">Readers</a>
-            <a href="loans.html">Loans</a>
+            <a href="loans.html" class="active">Loans</a>
         </nav>
         <!-- dark mode switch -->
         <label class="switch">
@@ -27,14 +27,23 @@
     <!-- page content -->
     <main>
 
-        <h2>Categories</h2>
+        <h2>Loans</h2>
 
         <!-- CREATE / UPDATE: form -->
         <form id="form">
-            <h3 id="formTitle">Add category</h3>
+            <h3 id="formTitle">Add loan</h3>
 
-            <label>Name</label>
-            <input type="text" id="name" required>
+            <label>Book</label>
+            <select id="book"></select>
+
+            <label>Reader</label>
+            <select id="reader"></select>
+
+            <label>Loan date</label>
+            <input type="date" id="loanDate" required>
+
+            <label>Return date</label>
+            <input type="date" id="returnDate">
 
             <button type="submit">Save</button>
         </form>
@@ -43,7 +52,11 @@
         <table>
             <thead>
                 <tr>
-                    <th>Name</th>
+                    <th>Book</th>
+                    <th>Reader</th>
+                    <th>Loan date</th>
+                    <th>Return date</th>
+                    <th>Status</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -55,11 +68,11 @@
     <!-- SQL library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
     <!-- shared database code -->
-    <script src="js/db.js"></script>
+    <script src="../js/db.js"></script>
     <!-- dark mode -->
-    <script src="js/theme.js"></script>
+    <script src="../js/theme.js"></script>
     <!-- code for this page -->
-    <script src="js/categories.js"></script>
+    <script src="../js/loans.js"></script>
 
 </body>
 </html>
