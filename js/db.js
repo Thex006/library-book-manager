@@ -14,7 +14,7 @@ async function loadDatabase() {
     } else {
         /* first time: create it from database.sql */
         db = new SQL.Database();
-        const sql = await fetch("database.sql").then(r => r.text());
+        const sql = await fetch("database/database.sql").then(r => r.text());
         db.run(sql);
         save();
     }

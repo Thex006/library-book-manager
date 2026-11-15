@@ -18,18 +18,18 @@ Pages (HTML):
 - [readers.html](readers.html) - Readers page
 - [loans.html](loans.html) - Loans page
 
-Design (CSS):
+Design (CSS) - in the css folder:
 
-- [style.css](style.css) - the design of all pages
+- [style.css](css/style.css) - the design of all pages
 
-Database (SQL):
+Database (SQL) - in the database folder:
 
-- [database.sql](database.sql) - creates the 5 tables and adds example data
+- [database.sql](database/database.sql) - creates the 5 tables and adds example data
 
-JavaScript (runs the SQL):
+JavaScript (runs the SQL) - in the js folder:
 
-- [db.js](db.js) - shared code: loads and saves the database
-- [books.js](books.js), [authors.js](authors.js), [categories.js](categories.js), [readers.js](readers.js), [loans.js](loans.js) - the CRUD code for each page
+- [db.js](js/db.js) - shared code: loads and saves the database
+- [books.js](js/books.js), [authors.js](js/authors.js), [categories.js](js/categories.js), [readers.js](js/readers.js), [loans.js](js/loans.js) - the CRUD code for each page
 
 ## Database tables
 
