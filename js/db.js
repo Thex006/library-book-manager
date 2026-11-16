@@ -20,7 +20,7 @@ async function loadDatabase() {
     }
 }
 
-/* save 
+/* save */
 function save() {
     localStorage.setItem("libraryDB", JSON.stringify(Array.from(db.export())));
 }
