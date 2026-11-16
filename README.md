@@ -17,7 +17,6 @@ Pages (HTML) - in the html folder:
 - [categories.html](html/categories.html) - Categories page
 - [readers.html](html/readers.html) - Readers page
 - [loans.html](html/loans.html) - Loans page
-- [database.html](html/database.html) - Database page: shows every table and lets you download library.db
 
 The index.html file at the top only opens the Books page, because GitHub Pages always starts from index.html.
 
@@ -32,7 +31,6 @@ Database (SQL) - in the database folder:
 JavaScript (runs the SQL) - in the js folder:
 
 - [db.js](js/db.js) - shared code: loads and saves the database
-- [database.js](js/database.js) - shows all tables and downloads library.db
 - [books.js](js/books.js), [authors.js](js/authors.js), [categories.js](js/categories.js), [readers.js](js/readers.js), [loans.js](js/loans.js) - the CRUD code for each page
 
 ## Database tables
@@ -73,7 +71,6 @@ The first time, the database is created from database.sql. After that it is save
 ## How to use it
 
 - Use the menu at the top to go to Books, Authors, Categories, Readers or Loans.
-- Database: shows all the tables and data. Click "Download library.db" to save the database file and open it in DB Browser for SQLite.
 - Add: fill in the form and click Save.
 - List: everything is shown in the table under the form.
 - Edit: click Edit next to a row. The data goes into the form. Change it and click Save.
