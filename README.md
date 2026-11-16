@@ -33,7 +33,6 @@ JavaScript (runs the SQL) - in the js folder:
 
 - [db.js](js/db.js) - shared code: loads and saves the database
 - [database.js](js/database.js) - shows all tables and downloads library.db
-- [lib/sql-wasm.js](js/lib/sql-wasm.js) - the sql.js library (SQLite for the browser), stored in the project
 - [books.js](js/books.js), [authors.js](js/authors.js), [categories.js](js/categories.js), [readers.js](js/readers.js), [loans.js](js/loans.js) - the CRUD code for each page
 
 ## Database tables
@@ -59,7 +58,7 @@ Every page does the same four things:
 
 - HTML
 - CSS
-- SQL (SQLite, running in the browser with the sql.js library, which is stored in the project)
+- SQL (SQLite, running in the browser with the sql.js library)
 - JavaScript (small files that run the SQL)
 - Git and GitHub (GitHub Pages hosts the website)
 
