@@ -4,7 +4,7 @@ let db;
 /* load the database */
 async function loadDatabase() {
     const SQL = await initSqlJs({
-        locateFile: file => "https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/" + file
+        locateFile: file => "../js/lib/" + file
     });
 
     const saved = localStorage.getItem("libraryDB");

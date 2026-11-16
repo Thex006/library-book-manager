@@ -282,3 +282,13 @@ body.dark th {
         overflow-x: auto;
     }
 }
+
+/* database page */
+#tables h3 {
+    margin-top: 30px;
+    text-transform: capitalize;
+}
+
+#tables table {
+    margin-top: 10px;
+}
